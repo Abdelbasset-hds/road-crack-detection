@@ -5,13 +5,20 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(RoadCrackDetection
     src/main.cpp
-    src/CrackDetection.cpp
-    src/Utils.cpp
+    src/preprocessing.cpp
+    src/utils.cpp
+    src/visualization.cpp
+    src/crack_detection.cpp
     )
+
+target_include_directories(RoadCrackDetection PRIVATE
+    ${OpenCV_INCLUDE_DIRS}
+    ${CMAKE_SOURCE_DIR}/include
+    )
+
 
 target_link_libraries(RoadCrackDetection ${OpenCV_LIBS})
 
